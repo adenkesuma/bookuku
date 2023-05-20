@@ -1,12 +1,32 @@
 "use client"
 import { HTMLAttributes, FC, useState } from "react"
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils'
+import { useMutation } from "@tanstack/react-query"
 import TextareaAutoSize from 'react-textarea-autosize'
+import { nanoid } from "nanoid"
+import { Message } from "@/lib/validator/message"
 
 interface ChatInputProps extends HTMLAttributes<HTMLDivElement> {}
 
 const ChatInput: FC<ChatInputProps> = ({ className, ...props }) => {
     const [input, setInput] = useState<string>('')
+
+    const { mutate: sendMessage, isLoading } = useMutation({
+        mutationFn: async (message: Message) => {
+            const response = await fetch('/api/message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: 'helloo' })
+            })
+
+            return response.body
+        },
+        onSuccess: () => {
+            console.log("success")
+        }
+    })
 
     return ( 
         <div {...props} className={cn('border-t border-zinc-300')}>
@@ -15,6 +35,19 @@ const ChatInput: FC<ChatInputProps> = ({ className, ...props }) => {
                     rows={2}
                     maxRows={4}
                     value={input}
+                    onKeyDown={(e) => {
+                        if(e.key === 'Enter' && !e.shiftKey) {
+                            e.preventDefault()
+
+                            const message: Message = {
+                                id: nanoid(),
+                                isUserMessage: true,
+                                text: input
+                            }
+
+                            sendMessage(message)
+                        }
+                    }}
                     onChange={(e) => setInput(e.target.value)}
                     autoFocus
                     placeholder="Type a message..."

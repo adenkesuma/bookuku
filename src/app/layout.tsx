@@ -1,6 +1,7 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
 import Chat from './components/chat'
+import Provider from './components/providers'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,10 +17,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Chat />
-        {children}
-      </body>
+      <Provider>
+        <body className={inter.className}>
+          <Chat />
+          {children}
+        </body>
+      </Provider>
     </html>
   )
 }
