@@ -1,7 +1,14 @@
-"use client"
 import { Message } from "@/lib/validator/message"
 import { createContext, ReactNode, useState } from 'react'
 import { nanoid } from "nanoid"
+
+const defaultValue = [
+    {
+        id: nanoid(),
+        text: "May i help you ?",
+        isUserMessage: false
+    }
+]
 
 export const MessagesContext = createContext<{
     messages: Message[]
@@ -21,13 +28,7 @@ export const MessagesContext = createContext<{
 
 export const MessagesProvider = ({ children }: { children: ReactNode }) => {
     const [isMessageUpdating, setIsMessageUpdating] = useState<boolean>(false)
-    const [messages, setMessages] = useState<Message[]>([
-        {
-            id: nanoid(),
-            text: "Hello World",
-            isUserMessage: false
-        }
-    ])
+    const [messages, setMessages] = useState<Message[]>(defaultValue)
 
     const addMessage = (message: Message) => {
         setMessages((prev) => [...prev, message])

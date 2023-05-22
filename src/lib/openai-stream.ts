@@ -24,7 +24,7 @@ export async function OpenAIStream(payload : OpenAIStreamPayload) {
 
     let counter = 0
 
-    const res = await fetch('https://api.openai.com/v1/chat/completions', {
+    const res = await fetch('https://chatgpt-api.shn.hk/v1/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
