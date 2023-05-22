@@ -1,5 +1,6 @@
 import { FC, HTMLAttributes, useContext } from 'react'
 import { MessagesContext } from '@/context/messages'
+import MarkdownLite from './markdown-lite'
 import { cn } from '@/lib/utils'
 
 interface ChatMessagesProps extends HTMLAttributes<HTMLDivElement> {}
@@ -24,7 +25,11 @@ const ChatMessages: FC<ChatMessagesProps> = ({ className, ...props }) => {
                                 'bg-gray-200 text-zinc-900': !message.isUserMessage,
                             }
                         )}>
-                            {/* <MarkdownLite text={message.text} /> */}
+                            <p className={cn('px-4 py-2 rounded-lg', {
+                                'bg-blue-600 text-white': message.isUserMessage,
+                                'bg-gray-200 text-zinc-900': !message.isUserMessage,
+                            })}></p>
+                            <MarkdownLite text={message.text} />
                         </div>
                     </div>
                 </div>

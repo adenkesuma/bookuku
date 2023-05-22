@@ -1,15 +1,25 @@
 "use client"
-import { HTMLAttributes, FC, useState } from "react"
+import { HTMLAttributes, FC, useState, useContext, useRef } from "react"
 import { cn } from '@/lib/utils'
 import { useMutation } from "@tanstack/react-query"
 import TextareaAutoSize from 'react-textarea-autosize'
 import { nanoid } from "nanoid"
 import { Message } from "@/lib/validator/message"
+import { MessagesContext } from "@/context/messages"
 
 interface ChatInputProps extends HTMLAttributes<HTMLDivElement> {}
 
 const ChatInput: FC<ChatInputProps> = ({ className, ...props }) => {
     const [input, setInput] = useState<string>('')
+    const { 
+        messages,
+        addMessage,
+        removeMessage,
+        updateMessage,
+        setIsMessageUpdating
+    } = useContext(MessagesContext)
+
+    const textareaRef = useRef<null | HTMLTextAreaElement>(null)
 
     const { mutate: sendMessage, isLoading } = useMutation({
         mutationKey: ['sendMessage'],
@@ -24,8 +34,21 @@ const ChatInput: FC<ChatInputProps> = ({ className, ...props }) => {
 
             return response.body
         },
+        onMutate(message) {
+            addMessage(message)
+        },
         onSuccess: async (stream) => {
             if (!stream) throw new Error('No stream found')
+
+            const id = nanoid()
+            const responseMessage: Message = {
+                id,
+                isUserMessage: false,
+                text: ''
+            }
+
+            addMessage(responseMessage)
+            setIsMessageUpdating(true)
 
             const reader = stream.getReader()
             const decoder = new TextDecoder()
@@ -35,8 +58,16 @@ const ChatInput: FC<ChatInputProps> = ({ className, ...props }) => {
                 const { value, done: doneReading } = await reader.read()
                 done = doneReading
                 const chunkValue = decoder.decode(value)
-                console.log(chunkValue)
+                updateMessage(id, (prev) => prev + chunkValue)
             }
+
+            // clean up
+            setIsMessageUpdating(false)
+            setInput('')
+
+            setTimeout(() => {
+                textareaRef.current?.focus()
+            }, 10)
         }
     })
 
@@ -44,6 +75,7 @@ const ChatInput: FC<ChatInputProps> = ({ className, ...props }) => {
         <div {...props} className={cn('border-t border-zinc-300')}>
             <div className="relative mt-4 px-6 flex-1 overflow-hidden rounded-lg border-none outline-none">
                 <TextareaAutoSize 
+                    ref={textareaRef}
                     rows={2}
                     maxRows={4}
                     value={input}
