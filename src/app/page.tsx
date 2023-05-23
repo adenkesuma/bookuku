@@ -1,10 +1,11 @@
+import HeaderBanner from "@/components/header-banner";
 import { FC } from "react"
 
 const Home: FC = () => {
 
   return (
-    <main className="absolute inset-0 flex justify-center items-center">
-      Homepage
+    <main className="md:container mx-auto">
+      <HeaderBanner />
     </main>
   )
 }

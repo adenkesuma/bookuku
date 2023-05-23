@@ -1,7 +1,7 @@
 import { FC } from "react"
-import Image from "next/image";
+import Image from "next/image"
 import BookukuLogo from "../../public/assets/logo-bookuku.png"
-import Link from "next/link";
+import Link from "next/link"
 
 interface NavbarProps {}
 
@@ -27,7 +27,7 @@ const Navbar: FC<NavbarProps> = () => {
                 </ul>
             </nav>
         </header>
-    );
+    )
 }
  
-export default Navbar;
+export default Navbar
