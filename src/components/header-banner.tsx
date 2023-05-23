@@ -2,17 +2,18 @@ import { FC } from 'react'
 import Authors from "../../public/assets/authors.svg"
 import Image from 'next/image';
 import QrCode from '../../public/assets/scan.svg'
+import Storm from "../../public/assets/storm.svg"
 
 interface HeaderBannerProps {}
 
 const HeaderBanner: FC<HeaderBannerProps> = () => {
     return (  
-        <header className='w-full mt-9'>
+        <header className='w-full mt-9 relative'>
             <div className="md:container flex justify-between items-center gap-12">
                 <div className='w-[22%]'>
                     <Image className="w-[260px]" src={Authors} alt="authors image"/>
                 </div>
-                <div className="w-[58%]">
+                <div className="w-[58%] z-50">
                     <h1 className="text-center text-[50px] font-semibold text-[#1a1a1a] mb-4">
                         Embark on a Literary <br /> Journey at Our Online <br /> Bookstore
                     </h1>
@@ -28,6 +29,12 @@ const HeaderBanner: FC<HeaderBannerProps> = () => {
                     <Image className='w-[260px]' src={QrCode} alt="scan qr code" />
                 </div>
             </div>
+
+            <Image
+                className='absolute top-4 right-[300px] w-[240px]'
+                src={Storm}
+                alt="storm background"
+            />
         </header>
     )
 }
