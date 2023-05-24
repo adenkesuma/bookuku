@@ -4,6 +4,7 @@ import Authors from "../../public/assets/authors.svg"
 import Image from 'next/image'
 import Link from 'next/link'
 import Sun from "../../public/assets/sun.svg"
+import BackgroundBooksStore from "../../public/assets/background-books-store.svg"
 import QrCode from '../../public/assets/scan.svg'
 import Storm from "../../public/assets/storm.svg"
 import People1 from "../../public/assets/people-1.png"
@@ -17,10 +18,10 @@ const HeaderBanner: FC<HeaderBannerProps> = () => {
     return (  
         <header className='w-full mt-9 relative'>
             <div className="md:container flex justify-between items-center gap-12">
-                <div className='w-[22%]'>
-                    <Image className="w-[260px]" src={Authors} alt="authors image"/>
+                <div className='w-[300px]'>
+                    <Image className="w-full" src={Authors} alt="authors image"/>
                 </div>
-                <div className="w-[58%] z-50">
+                <div className="w-[60%] z-50">
                     <h1 className="text-center text-[50px] font-semibold text-[#1a1a1a] mb-4">
                         Embark on a Literary <br /> Journey at Our Online <br /> Bookstore
                     </h1>
@@ -28,12 +29,12 @@ const HeaderBanner: FC<HeaderBannerProps> = () => {
                         Welcome to the Embark on a Literary Journey at Our Online Bookstore app! Explore the enchanting world of literature at your fingertips. With a vast collection of books ranging from contemporary bestsellers to timeless classics, our app is your gateway to endless reading possibilities. Immerse yourself in captivating stories, discover new authors, and revisit beloved favorites from the comfort of your own device.
                     </p>
                 </div>
-                <div className="w-[20%]">
-                    <p className="text-center font-medium mb-6 text-[16px] text-[#444444]">
+                <div className="w-[300px]">
+                    <p className="w-full text-center font-medium mb-6 text-[16px] text-[#444444]">
                         our bookstore has something for everyone,
                         Shop with us today and discover the joy of reading!
                     </p>
-                    <Image className='w-[260px]' src={QrCode} alt="scan qr code" />
+                    <Image className='w-full' src={QrCode} alt="scan qr code" />
                 </div>
             </div>
 
@@ -48,7 +49,7 @@ const HeaderBanner: FC<HeaderBannerProps> = () => {
                 alt="sun svg"
             />
 
-            <div className="flex justify-between items-center mt-6 mb-80">
+            <div className="flex justify-between items-center mt-6 mb-10">
                 <div className="flex justify-between items-center gap-6">
                     <Image 
                         className=''
@@ -90,6 +91,13 @@ const HeaderBanner: FC<HeaderBannerProps> = () => {
                         <span className="font-medium text-[14px] text-[#444444]">join Book lover </span> 
                     </div>
                 </div>
+            </div>
+
+            <div>
+                <Image 
+                    src={BackgroundBooksStore}
+                    alt="background books store"
+                />
             </div>
         </header>
     )
