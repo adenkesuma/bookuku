@@ -49,21 +49,21 @@ const HeaderBanner: FC<HeaderBannerProps> = () => {
                 alt="sun svg"
             />
 
-            <div className="flex justify-between items-center mt-6 mb-10">
+            <div className="flex justify-between items-center mt-6 mb-12">
                 <div className="flex justify-between items-center gap-6">
                     <Image 
                         className=''
                         src={Discount}
                         alt="discount"
                     />
-                    <button className="font-bold text-[18px] border-[1.8px] border-zinc-900 rounded-[30px] py-2 px-12">
+                    <button className="font-bold text-[18px] border-[1.8px] border-zinc-900 hover:bg-zinc-900 hover:text-white rounded-[30px] py-2 px-12">
                         <Link href="#">
                             Explore Now
                         </Link>
                     </button>
-                    <button className="bg-zinc-900 rounded-[30px] py-[10px] px-12">
+                    <button className="bg-zinc-900 rounded-[30px] py-[10px] px-12 hover:border-[1.8px] hover:border-zinc-900 hover:bg-inherit hover:text-zinc-900 text-white">
                         <Link href="#">
-                            <ArrowRight className="w-8 h-6 text-white"/>
+                            <ArrowRight className="w-8 h-6"/>
                         </Link>
                     </button>
                 </div>
@@ -93,8 +93,9 @@ const HeaderBanner: FC<HeaderBannerProps> = () => {
                 </div>
             </div>
 
-            <div>
+            <div className="w-[100%]">
                 <Image 
+                    className="w-full"
                     src={BackgroundBooksStore}
                     alt="background books store"
                 />

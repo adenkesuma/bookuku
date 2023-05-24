@@ -16,13 +16,13 @@ const Navbar: FC<NavbarProps> = () => {
                 />
                 <ul className="flex justify-between items-center gap-8">
                     <li className="list-none">
-                        <Link className="font-semibold text-[16px]" href="#">About</Link>
+                        <Link className="font-semibold text-[16px] hover:border-b-2 hover:border-zinc-900 pb-2" href="#">About</Link>
                     </li>
                     <li className="list-none">
-                        <Link className="font-semibold text-[16px]" href="#">Store</Link>
+                        <Link className="font-semibold text-[16px] hover:border-b-2 hover:border-zinc-900 pb-2" href="#">Store</Link>
                     </li>
                     <li className="list-none">
-                        <Link className="font-semibold text-[16px]" href="#">Contact us</Link>
+                        <Link className="font-semibold text-[16px] hover:border-b-2 hover:border-zinc-900 pb-2" href="#">Contact us</Link>
                     </li>
                 </ul>
             </nav>
